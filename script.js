@@ -59,10 +59,12 @@ function resize(e) {
     mousePosx = e.x;
     mousePosy = e.y;
     console.log(getComputedStyle(imgBox, '').width, getComputedStyle(imgBox, '').height)
+    form.elements[0].placeholder = parseInt(getComputedStyle(imgBox, '').width)
+    form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
     imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
     imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
-    body.style.width = ((parseInt(getComputedStyle(imgBox, '').width) - dx) + "px") * 1.25;
-    body.style.height = ((parseInt(getComputedStyle(imgBox, '').height) - dy) + "px") * 1.25;
+//     imgBox.style.zIndex = 2;
+//     img.style.zIndex = 1;
   }
   
 
