@@ -1,3 +1,22 @@
 body {
     background-color: bisque;
 }
+
+#img-box {
+    position: absolute;
+    width: 200px;
+    padding-right: 4px;
+    height: 200px;
+    left: 50px;
+    background-color: greenyellow;
+}
+
+#img-box::before {
+    content: '';
+    background-color: purple;
+    position: absolute;
+    right: 0;
+    width: 25px;
+    height: 200px;
+    cursor: ew-resize;
+}
