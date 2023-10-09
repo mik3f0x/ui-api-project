@@ -23,6 +23,9 @@ input:focus::placeholder {
     background-position: center;
     background-size: cover;
     border: solid 25px blueviolet;
+    border-image: url(border.png) 25 25;
+    border-image-slice: 25;
+    border-image-repeat: space;
 }
 
 img {

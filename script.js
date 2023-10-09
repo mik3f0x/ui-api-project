@@ -35,7 +35,7 @@ function handleSubmit(e) {
 
 
 // DRAGGING FUNCTIONALITY
-const borderThick = 25;
+let direction = ''
 let mousePosx;
 
 imgBox.addEventListener("mousedown", handleDrag)
@@ -44,7 +44,8 @@ document.addEventListener("mouseup", handleRelease)
 function handleDrag(e) {
     let clickLocx = parseInt(getComputedStyle(imgBox, '').width) - e.offsetX
     let clickLocy = parseInt(getComputedStyle(imgBox, '').height) - e.offsetY
-    if (clickLocx < borderThick) {
+    if (clickLocx < 0 || clickLocy < 0) {
+        console.log('offsets ' + e.offsetX + ' ' + e.offsetY)
         let temp = false
         if (form.elements[2].checked) temp = true
         form.reset()
@@ -54,6 +55,11 @@ function handleDrag(e) {
         document.addEventListener("mousemove", resize);
         console.log(mousePosx, mousePosy)
     }
+
+    if (clickLocx < 0 && clickLocy < 0) direction ='xy'
+    else if (clickLocx < 0 && clickLocy > 0) direction ='x'
+    else if (clickLocx > 0 && clickLocy < 0) direction ='y'
+
 }
 
 function handleRelease(e) {
@@ -64,15 +70,24 @@ function handleRelease(e) {
 }
 
 function resize(e) {
+    console.log('direction = ' + direction)
     const dx = mousePosx - e.x;
     const dy = mousePosy - e.y;
     mousePosx = e.x;
     mousePosy = e.y;
-    console.log(getComputedStyle(imgBox, '').width, getComputedStyle(imgBox, '').height)
-    form.elements[0].placeholder = parseInt(getComputedStyle(imgBox, '').width)
-    form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
-    imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
-    imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
+    // console.log(getComputedStyle(imgBox, '').width, getComputedStyle(imgBox, '').height)
+    if (direction === 'xy') {
+        form.elements[0].placeholder = parseInt(getComputedStyle(imgBox, '').width)
+        form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
+        imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
+        imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
+    } else if (direction === 'x') {
+        form.elements[0].placeholder = parseInt(getComputedStyle(imgBox, '').width)
+        imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
+    } else if (direction === 'y') {
+        form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
+        imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
+    }
   }
   
   function dragToImg(lastWidth, lastHeight) {
