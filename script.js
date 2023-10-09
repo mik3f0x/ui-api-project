@@ -21,10 +21,10 @@ function handleSubmit(e) {
 
     fetch(baseUrl + width + '/' + height)
         .then(res => {
-            img.src = res.url
-            console.log(`Inside: Width: ${width}\nHeight: ${height}`);
+            img.src = ''
             imgBox.style.width = width + 'px';
             imgBox.style.height = height + 'px';
+            img.src = res.url
         })
         .catch(err => {
             console.log("error retrieving data", err);
@@ -32,9 +32,8 @@ function handleSubmit(e) {
 }
 
 
-
+// DRAGGING FUNCTIONALITY
 const borderThick = 25;
-
 let mousePosx;
 
 imgBox.addEventListener("mousedown", handleDrag)
@@ -44,6 +43,7 @@ function handleDrag(e) {
     let clickLocx = parseInt(getComputedStyle(imgBox, '').width) - e.offsetX
     let clickLocy = parseInt(getComputedStyle(imgBox, '').height) - e.offsetY
     if (clickLocx < borderThick) {
+        form.reset()
         mousePosx = e.x;
         mousePosy = e.y;
         document.addEventListener("mousemove", resize);
@@ -68,24 +68,14 @@ function resize(e) {
     form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
     imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
     imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
-//     imgBox.style.zIndex = 2;
-//     img.style.zIndex = 1;
   }
   
-
-
-
-
   function dragToImg(lastWidth, lastHeight) {
 
     let height = lastHeight
     let width = lastWidth
 
     console.log(`Height: ${height}\nWidth: ${width}`);
-
-    baseUrl = 'https://picsum.photos/'
-
-    console.log(`Width: ${width}\nHeight: ${height}`);
 
     baseUrl = 'https://picsum.photos/'
 

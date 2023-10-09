@@ -4,9 +4,13 @@ body {
     width: auto;
 }
 
-input::placeholder {
+input, input::placeholder {
     font-weight: bold;
     color: black;
+}
+
+input:focus::placeholder {
+    color: transparent;
 }
 
 #img-box {
