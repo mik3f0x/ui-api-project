@@ -50,7 +50,8 @@ function handleDrag(e) {
 
 function handleRelease(e) {
     document.removeEventListener("mousemove", resize);
-    if (e.target.id === 'img-box') {
+    console.log(e.target.className)
+    if (e.target.className === 'clickable') {
     dragToImg(parseInt(getComputedStyle(imgBox, '').width), parseInt(getComputedStyle(imgBox, '').height))
     }
 }
