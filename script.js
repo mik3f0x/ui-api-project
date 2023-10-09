@@ -30,41 +30,48 @@ function handleSubmit(e) {
 
 
 const borderThick = 25;
-const panel = document.getElementById("img-box");
+const imgBox = document.getElementById("img-box");
 
-let m_pos;
+let mousePosx;
 
-panel.addEventListener("mousedown", handleDrag)
+imgBox.addEventListener("mousedown", handleDrag)
 document.addEventListener("mouseup", handleRelease)
 
 function handleDrag(e) {
-    let clickLocation = parseInt(getComputedStyle(panel, '').width) - e.offsetX
-    if (clickLocation < borderThick) {
-        m_pos = e.x;
+    let clickLocx = parseInt(getComputedStyle(imgBox, '').width) - e.offsetX
+    let clickLocy = parseInt(getComputedStyle(imgBox, '').height) - e.offsetY
+    if (clickLocx < borderThick) {
+        mousePosx = e.x;
+        mousePosy = e.y;
         document.addEventListener("mousemove", resize);
-        console.log(m_pos)
+        console.log(mousePosx, mousePosy)
     }
 }
 
 function handleRelease() {
     document.removeEventListener("mousemove", resize);
-    dragToImg(parseInt(getComputedStyle(panel, '').width))
+    dragToImg(parseInt(getComputedStyle(imgBox, '').width), parseInt(getComputedStyle(imgBox, '').height))
 }
 
 function resize(e) {
-    const dx = m_pos - e.x;
-    m_pos = e.x;
-    console.log(getComputedStyle(panel, '').width)
-    panel.style.width = (parseInt(getComputedStyle(panel, '').width) - dx) + "px";
+    const dx = mousePosx - e.x;
+    const dy = mousePosy - e.y;
+    mousePosx = e.x;
+    mousePosy = e.y;
+    console.log(getComputedStyle(imgBox, '').width, getComputedStyle(imgBox, '').height)
+    imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
+    imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
+    body.style.width = ((parseInt(getComputedStyle(imgBox, '').width) - dx) + "px") * 1.25;
+    body.style.height = ((parseInt(getComputedStyle(imgBox, '').height) - dy) + "px") * 1.25;
   }
   
 
 
 
 
-  function dragToImg(lastWidth) {
+  function dragToImg(lastWidth, lastHeight) {
 
-    let height = 200
+    let height = lastHeight
     let width = lastWidth
 
     console.log(`Height: ${height}\nWidth: ${width}`);
