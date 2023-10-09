@@ -11,6 +11,9 @@ function handleSubmit(e) {
 
     let width = e.target.elements[0].value;
     let height = e.target.elements[1].value;
+    let grayscale = ''
+
+    if (e.target.elements[2].checked) grayscale = '?grayscale'
 
     if (width === '') width = e.target.elements[0].placeholder;
     if (height === '') height = e.target.elements[1].placeholder;
@@ -19,9 +22,8 @@ function handleSubmit(e) {
 
     baseUrl = 'https://picsum.photos/'
 
-    fetch(baseUrl + width + '/' + height)
+    fetch(baseUrl + width + '/' + height + grayscale)
         .then(res => {
-            img.src = ''
             imgBox.style.width = width + 'px';
             imgBox.style.height = height + 'px';
             img.src = res.url
@@ -43,7 +45,10 @@ function handleDrag(e) {
     let clickLocx = parseInt(getComputedStyle(imgBox, '').width) - e.offsetX
     let clickLocy = parseInt(getComputedStyle(imgBox, '').height) - e.offsetY
     if (clickLocx < borderThick) {
+        let temp = false
+        if (form.elements[2].checked) temp = true
         form.reset()
+        if (temp) form.elements[2].checked = true
         mousePosx = e.x;
         mousePosy = e.y;
         document.addEventListener("mousemove", resize);
@@ -74,12 +79,15 @@ function resize(e) {
 
     let height = lastHeight
     let width = lastWidth
+    let grayscale = ''
+
+    if (form.elements[2].checked) grayscale = '?grayscale'
 
     console.log(`Height: ${height}\nWidth: ${width}`);
 
     baseUrl = 'https://picsum.photos/'
 
-    fetch(baseUrl + width + '/' + height)
+    fetch(baseUrl + width + '/' + height + grayscale)
         .then(res => {
             img.src = res.url
         })

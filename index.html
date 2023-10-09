@@ -11,8 +11,12 @@
     <h1>Lorem Picsum - Stock Photos Any Size</h1>
     <p>get a random photo</p>
     <form>
-        <input type="text" class="input" id="input-height" placeholder="200">
-        <input type="text" class="input" id="input-width" placeholder="300">
+        <label for="width">Width:</label>
+        <input name="width" type="text" class="input" id="input-height" placeholder="200">
+        <label for="height">Height:</label>
+        <input name="height" type="text" class="input" id="input-width" placeholder="300">
+        <label for="grayscale">Grayscale?</label>
+        <input name="grayscale" type="checkbox">
         <button class="searchButton">Get a photo</button>
     </form>
     <div class="clickable" id="img-box">
