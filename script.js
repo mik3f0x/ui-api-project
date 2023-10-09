@@ -1,6 +1,7 @@
 console.log('hey')
 
 const form = document.querySelector("form");
+const imgBox = document.getElementById("img-box");
 const img = document.querySelector("img")
 
 form.addEventListener("submit", handleSubmit)
@@ -21,6 +22,9 @@ function handleSubmit(e) {
     fetch(baseUrl + width + '/' + height)
         .then(res => {
             img.src = res.url
+            console.log(`Inside: Width: ${width}\nHeight: ${height}`);
+            imgBox.style.width = width + 'px';
+            imgBox.style.height = height + 'px';
         })
         .catch(err => {
             console.log("error retrieving data", err);
@@ -30,7 +34,6 @@ function handleSubmit(e) {
 
 
 const borderThick = 25;
-const imgBox = document.getElementById("img-box");
 
 let mousePosx;
 
@@ -50,7 +53,6 @@ function handleDrag(e) {
 
 function handleRelease(e) {
     document.removeEventListener("mousemove", resize);
-    console.log(e.target.className)
     if (e.target.className === 'clickable') {
     dragToImg(parseInt(getComputedStyle(imgBox, '').width), parseInt(getComputedStyle(imgBox, '').height))
     }
