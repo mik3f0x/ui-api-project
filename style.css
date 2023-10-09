@@ -20,17 +20,3 @@ input::placeholder {
     background-size: cover;
     border: solid 25px blueviolet;
 }
-
-img {
-    overflow: hidden;
-}
-
-/* #img-box::before {
-    content: '';
-    background-color: purple;
-    position: absolute;
-    right: 0;
-    width: 25px;
-    height: 200px;
-    cursor: ew-resize;
-} */

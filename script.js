@@ -48,9 +48,11 @@ function handleDrag(e) {
     }
 }
 
-function handleRelease() {
+function handleRelease(e) {
     document.removeEventListener("mousemove", resize);
+    if (e.target.id === 'img-box') {
     dragToImg(parseInt(getComputedStyle(imgBox, '').width), parseInt(getComputedStyle(imgBox, '').height))
+    }
 }
 
 function resize(e) {
