@@ -8,20 +8,23 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <h1>Lorem Picsum - Stock Photos Any Size</h1>
-    <p>get a random photo</p>
-    <form>
-        <label for="width">Width:</label>
-        <input name="width" type="text" class="input" id="input-height" placeholder="200">
-        <label for="height">Height:</label>
-        <input name="height" type="text" class="input" id="input-width" placeholder="300">
-        <label for="grayscale">Grayscale?</label>
-        <input name="grayscale" type="checkbox">
-        <button class="searchButton">Get a photo</button>
-    </form>
+    <header>
+        <h1>Lorem Picsum - Stock Photos Any Size</h1>
+        <p>get a random photo</p>
+        <form>
+            <label for="width">Width:</label>
+            <input name="width" type="text" class="input" id="input-height" placeholder="300">
+            <label for="height">Height:</label>
+            <input name="height" type="text" class="input" id="input-width" placeholder="200">
+            <label for="grayscale">Grayscale?</label>
+            <input name="grayscale" type="checkbox">
+            <button class="searchButton">Get a photo</button>
+        </form>
+        <a target="_blank" rel="noopener" href="">Open image in new tab</a>
+        <button>Copy photo url to clipboard</button>
+    </header>
     <div class="clickable" id="img-box">
         <img class="clickable" src=""/>
     </div>
-    <a target="_blank" rel="noopener" href="">Open image in new tab</a>
 </body>
 </html>
