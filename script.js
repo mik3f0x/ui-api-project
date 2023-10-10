@@ -26,7 +26,9 @@ function handleSubmit(e) {
         .then(res => {
             imgBox.style.width = width + 'px';
             imgBox.style.height = height + 'px';
-            img.src = res.url
+            img.src = res.url;
+            e.target.elements[0].placeholder = width;
+            e.target.elements[1].placeholder = height;
         })
         .catch(err => {
             console.log("error retrieving data", err);
@@ -75,18 +77,22 @@ function resize(e) {
     const dy = mousePosy - e.y;
     mousePosx = e.x;
     mousePosy = e.y;
-    // console.log(getComputedStyle(imgBox, '').width, getComputedStyle(imgBox, '').height)
     if (direction === 'xy') {
+        // console.log(getComputedStyle(imgBox, '').width, getComputedStyle(imgBox, '').height)
         form.elements[0].placeholder = parseInt(getComputedStyle(imgBox, '').width)
         form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
         imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
         imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
+        document.body.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy + 500) + "px";
+        document.body.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dy + 500) + "px";
     } else if (direction === 'x') {
         form.elements[0].placeholder = parseInt(getComputedStyle(imgBox, '').width)
         imgBox.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dx) + "px";
+        document.body.style.width = (parseInt(getComputedStyle(imgBox, '').width) - dy + 500) + "px";
     } else if (direction === 'y') {
         form.elements[1].placeholder = parseInt(getComputedStyle(imgBox, '').height)
         imgBox.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy) + "px";
+        document.body.style.height = (parseInt(getComputedStyle(imgBox, '').height) - dy + 500) + "px";
     }
   }
   

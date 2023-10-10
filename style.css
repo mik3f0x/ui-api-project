@@ -15,6 +15,7 @@ input:focus::placeholder {
 
 #img-box {
     position: absolute;
+    margin-top: 50px;
     width: 300px;
     height: 200px;
     left: 50px;
@@ -26,7 +27,6 @@ input:focus::placeholder {
     border-image: url(border_04.jpg);
     border-image-slice: 25%;
     border-image-repeat: stretch;
-    border-top: solid 25px gray;
 }
 
 img {
