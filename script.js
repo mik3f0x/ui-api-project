@@ -2,6 +2,13 @@ const imgBox = document.getElementById("img-box");
 const img = document.querySelector("img")
 const link = document.querySelector("a")
 
+const copy = document.getElementById("copyBtn")
+
+copy.onclick = () => {
+    const imgUrl = img.src
+    navigator.clipboard.writeText(imgUrl)
+}
+
 
 // FORM SUBMIT FUNCTIONALITY
 const form = document.querySelector("form");
