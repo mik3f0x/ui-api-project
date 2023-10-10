@@ -22,10 +22,11 @@ input:focus::placeholder {
     background-image: url("shrek_camera_302x200.jpeg");
     background-position: center;
     background-size: cover;
-    border: solid 25px blueviolet;
-    border-image: url(border.png) 25 25;
-    border-image-slice: 25;
-    border-image-repeat: space;
+    border: solid 25px gray;
+    border-image: url(border_04.jpg);
+    border-image-slice: 25%;
+    border-image-repeat: stretch;
+    border-top: solid 25px gray;
 }
 
 img {
